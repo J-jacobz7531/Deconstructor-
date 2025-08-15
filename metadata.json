@@ -1,0 +1,5 @@
+{
+  "name": "Code Deconstructor",
+  "description": "An application that uses AI to analyze and break down the technical components of a website based on its URL, providing insights into its structure, styling, and logic.",
+  "requestFramePermissions": []
+}
