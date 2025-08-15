@@ -11,12 +11,16 @@ const analysisSchema = {
   type: Type.OBJECT,
   properties: {
     technologies: {
-      type: Type.OBJECT,
-      properties: {
-        frontend: { type: Type.ARRAY, items: { type: Type.STRING } },
-        backend: { type: Type.ARRAY, items: { type: Type.STRING } },
-        styling: { type: Type.ARRAY, items: { type: Type.STRING } },
-        animation: { type: Type.ARRAY, items: { type: Type.STRING } },
+      type: Type.ARRAY,
+      description: "A list of technologies used in the website.",
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          name: { type: Type.STRING, description: "The name of the technology, library, or framework." },
+          category: { type: Type.STRING, description: "The category of the technology (e.g., Frontend Framework, Animation Library, 3D Graphics)." },
+          reasoning: { type: Type.STRING, description: "A brief explanation for why this technology is likely used." },
+        },
+        required: ["name", "category", "reasoning"],
       },
     },
     structure: {
@@ -42,7 +46,7 @@ export const analyzeUrl = async (url: string): Promise<CodeAnalysis> => {
     Based on your knowledge of web development, infer the technologies, structure, and logic.
     Do not visit the URL. Instead, use your knowledge about the domain and common patterns for high-end interactive websites.
     Provide the analysis in a JSON format that adheres to the provided schema.
-    - For 'technologies', list the likely frameworks, libraries, and services.
+    - For 'technologies', provide a detailed list. For each technology, include its name, category, and a concise reasoning for why you believe it's being used.
     - For 'structure', describe the potential component breakdown and state management approach.
     - For 'logic', explain the core functionality and key user interactions.
   `;
